@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Production builds
+.next/
+out/
+build/
+dist/
+
+# Environment variables
+.env*
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Auto-generated files
+next-env.d.ts
+
+# Public assets (optional - remove if you want to format these)
+public/
+
+# Tailwind CSS (if you have generated CSS files)
+*.css.map

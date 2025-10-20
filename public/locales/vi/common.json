@@ -1,0 +1,18 @@
+{
+  "welcome": "Chào mừng đến với Cửa hàng Anime",
+  "home": "Trang chủ",
+  "about": "Giới thiệu",
+  "products": "Sản phẩm",
+  "contact": "Liên hệ",
+  "search": "Tìm kiếm",
+  "cart": "Giỏ hàng",
+  "login": "Đăng nhập",
+  "register": "Đăng ký",
+  "logout": "Đăng xuất",
+  "addToCart": "Thêm vào giỏ",
+  "price": "Giá",
+  "description": "Mô tả",
+  "category": "Danh mục",
+  "inStock": "Còn hàng",
+  "outOfStock": "Hết hàng"
+}
