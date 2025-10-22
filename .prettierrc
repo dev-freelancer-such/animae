@@ -10,5 +10,25 @@
   "arrowParens": "avoid",
   "endOfLine": "lf",
   "jsxSingleQuote": false,
-  "quoteProps": "as-needed"
+  "quoteProps": "as-needed",
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^(react|next|@next)(.*)$",
+    "^[a-zA-Z]",
+    "^@/models/(.*)$",
+    "^@/constants/(.*)$",
+    "^@/helpers/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/lib/(.*)$",
+    "^@/services/(.*)$",
+    "^@/store/(.*)$",
+    "^@/utils/(.*)$",
+    "^@/components/(.*)$",
+    "^@/(.*)\\.(png|jpg|jpeg|gif|svg|webp|ico)$",
+    "^[./]",
+    "^@/styles/(.*)$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderCaseInsensitive": true
 }
