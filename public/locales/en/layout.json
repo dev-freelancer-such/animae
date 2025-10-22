@@ -1,0 +1,43 @@
+{
+    "header":{
+        "menu":{
+            "latest-release":"Latest release",
+            "top-trending":"Top trending",
+            "newly-update":"Newly updated",
+            "suggestions-for-you":"Suggestions for you",
+            "random-story":"Random story",
+            "search":"Search",
+            "category-story":"Category story",
+            "for-you":"For you"
+        }
+    },
+
+    "footer":{
+        "manga": {
+            "title": "Manga",
+            "action": "Action",
+            "comedy": "Comedy",
+            "horror": "Horror",
+            "animation": "Animation",
+            "fantasy": "Fantasy"
+        },
+        "series": {
+            "title": "Series",
+            "popular-series": "Popular Series",
+            "classic-series": "Classic Series",
+            "romance": "Romance",
+            "comedy": "Comedy",
+            "fantasy": "Fantasy"
+        },
+        "support": {
+            "title": "Support",
+            "general-info": "General Info",
+            "privacy-policy": "Privacy Policy",
+            "terms-of-service": "Terms of Service",
+            "help-center": "Help Center"
+        },
+        "contact": {
+            "title": "Contact"
+        }
+    }
+}

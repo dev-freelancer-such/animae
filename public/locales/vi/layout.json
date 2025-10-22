@@ -1,0 +1,42 @@
+{
+    "header":{
+        "menu":{
+            "latest-release":"Phát hành mới",
+            "top-trending":"Thịnh hành",
+            "newly-update":"Cập nhật mới",
+            "suggestions-for-you":"Gợi ý cho bạn",
+            "random-story":"Truyện ngẫu nhiên",
+            "search":"Tìm kiếm",
+            "category-story":"Thể loại",
+            "for-you":"Dành cho bạn"
+        }
+    },
+    "footer":{
+        "manga": {
+            "title": "Manga",
+            "action": "Hành động",
+            "comedy": "Hài hước",
+            "horror": "Kinh dị",
+            "animation": "Hoạt hình",
+            "fantasy": "Viễn tưởng"
+        },
+        "series": {
+            "title": "Series",
+            "popular-series": "Series Phổ biến",
+            "classic-series": "Series Kinh điển",
+            "romance": "Lãng mạn",
+            "comedy": "Hài hước",
+            "fantasy": "Viễn tưởng"
+        },
+        "support": {
+            "title": "Hỗ trợ",
+            "general-info": "Thông tin chung",
+            "privacy-policy": "Chính sách bảo mật",
+            "terms-of-service": "Điều khoản dịch vụ",
+            "help-center": "Trung tâm trợ giúp"
+        },
+        "contact": {
+            "title": "Liên hệ"
+        }
+    }
+}
