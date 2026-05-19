@@ -1,0 +1,46 @@
+{
+  "all-stories": "Tất cả truyện",
+  "results": "{{count}} kết quả",
+  "filter": {
+    "title": "Bộ lọc",
+    "reset": "Đặt lại",
+    "search-placeholder": "Tìm kiếm truyện...",
+    "sections": {
+      "genre": "Thể loại",
+      "status": "Trạng thái",
+      "star-rating": "Đánh giá sao",
+      "views": "Lượt xem",
+      "sort-by": "Sắp xếp"
+    },
+    "genres": {
+      "action": "Hành động",
+      "adventure": "Phiêu lưu",
+      "comedy": "Hài hước",
+      "drama": "Tâm lý",
+      "fantasy": "Huyền huyễn",
+      "horror": "Kinh dị",
+      "mystery": "Bí ẩn",
+      "romance": "Tình cảm",
+      "sci-fi": "Khoa học viễn tưởng",
+      "slice-of-life": "Đời thường",
+      "sports": "Thể thao",
+      "thriller": "Giật gân"
+    },
+    "status": {
+      "all": "Tất cả",
+      "ongoing": "Đang tiến hành",
+      "completed": "Đã hoàn thành",
+      "hiatus": "Tạm dừng"
+    },
+    "sort": {
+      "latest": "Mới cập nhật",
+      "views": "Lượt xem cao nhất",
+      "likes": "Yêu thích nhiều nhất",
+      "az": "A – Z"
+    },
+    "star": {
+      "all": "Tất cả",
+      "from": "Từ {{count}} ★ trở lên"
+    }
+  }
+}

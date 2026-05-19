@@ -1,5 +1,13 @@
 import { StaticImageData } from "next/image";
 
+export interface ChapterInterface {
+  key: string;
+  number: number;
+  title: string;
+  updatedAt: string;
+  thumbnail?: string | StaticImageData;
+}
+
 export interface StoryInterface {
   key: string;
   title: string;
@@ -13,6 +21,10 @@ export interface StoryInterface {
   isLiked?: boolean;
   isRanked?: boolean;
   indexProp?: number;
+  genres?: string[];
+  status?: "ongoing" | "completed" | "hiatus";
+  rating?: number;
+  chapters?: ChapterInterface[];
 }
 
 export interface HomeCollectionStoryInterface {

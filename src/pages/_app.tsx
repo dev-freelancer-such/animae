@@ -24,11 +24,13 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <main
       className={cn(
-        `max-container ${getManrope.className} ${getAnton.className} bg-black`
+        `max-container ${getManrope.className} ${getAnton.className} bg-black flex flex-col items-center justify-center`
       )}
     >
       <Header />
-      <Component {...pageProps} />
+      <div className="container">
+        <Component {...pageProps} />
+      </div>
       <Footer />
     </main>
   );

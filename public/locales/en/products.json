@@ -1,0 +1,46 @@
+{
+  "all-stories": "All Stories",
+  "results": "{{count}} results",
+  "filter": {
+    "title": "Filter",
+    "reset": "Reset",
+    "search-placeholder": "Search stories...",
+    "sections": {
+      "genre": "Genre",
+      "status": "Status",
+      "star-rating": "Star Rating",
+      "views": "Views",
+      "sort-by": "Sort By"
+    },
+    "genres": {
+      "action": "Action",
+      "adventure": "Adventure",
+      "comedy": "Comedy",
+      "drama": "Drama",
+      "fantasy": "Fantasy",
+      "horror": "Horror",
+      "mystery": "Mystery",
+      "romance": "Romance",
+      "sci-fi": "Sci-Fi",
+      "slice-of-life": "Slice of Life",
+      "sports": "Sports",
+      "thriller": "Thriller"
+    },
+    "status": {
+      "all": "All",
+      "ongoing": "Ongoing",
+      "completed": "Completed",
+      "hiatus": "Hiatus"
+    },
+    "sort": {
+      "latest": "Latest Update",
+      "views": "Top Views",
+      "likes": "Most Liked",
+      "az": "A – Z"
+    },
+    "star": {
+      "all": "All",
+      "from": "From {{count}} ★ and above"
+    }
+  }
+}
