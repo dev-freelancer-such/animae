@@ -36,18 +36,21 @@ axiosInstance.interceptors.response.use(
       if (refreshToken) {
         return axiosInstance
           .post("/core/auth/refresh-token", { refreshToken })
-          .then((res: { data: { accessToken: string; refreshToken: string } }) => {
-            const accessToken = res?.data?.accessToken;
-            axiosInstance.defaults.headers.common["Authorization"] =
-              `Bearer ${accessToken}`;
-            originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
-            webStorageClient.setToken(accessToken);
-            webStorageClient.set(
-              constants.REFRESH_TOKEN,
-              res?.data?.refreshToken
-            );
-            return axiosInstance(originalRequest);
-          })
+          .then(
+            (res: { data: { accessToken: string; refreshToken: string } }) => {
+              const accessToken = res?.data?.accessToken;
+              axiosInstance.defaults.headers.common["Authorization"] =
+                `Bearer ${accessToken}`;
+              originalRequest.headers["Authorization"] =
+                `Bearer ${accessToken}`;
+              webStorageClient.setToken(accessToken);
+              webStorageClient.set(
+                constants.REFRESH_TOKEN,
+                res?.data?.refreshToken
+              );
+              return axiosInstance(originalRequest);
+            }
+          )
           .catch(() => {
             webStorageClient.removeAll();
           });

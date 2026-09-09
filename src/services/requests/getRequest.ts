@@ -24,24 +24,30 @@ const getRequest = <T = unknown>(
 
   return axiosInstance
     .get(url, config)
-    .then((res) => {
+    .then(res => {
       const data = res as unknown as T & { message?: string };
       if (enableFlashMessageSuccess && data?.message) {
         toast.success(data.message);
       }
       return data;
     })
-    .catch((err: { response?: { data?: { errors?: { detail?: string }[]; message?: string } } }) => {
-      if (enableFlashMessageError) {
-        const errors = err?.response?.data?.errors;
-        if (errors?.length > 0) {
-          errors.forEach(item => toast.error(item.detail || "Error"));
-        } else {
-          toast.error(err?.response?.data?.message || "Something went wrong");
+    .catch(
+      (err: {
+        response?: {
+          data?: { errors?: { detail?: string }[]; message?: string };
+        };
+      }) => {
+        if (enableFlashMessageError) {
+          const errors = err?.response?.data?.errors;
+          if (errors && errors.length > 0) {
+            errors.forEach(item => toast.error(item.detail || "Error"));
+          } else {
+            toast.error(err?.response?.data?.message || "Something went wrong");
+          }
         }
+        return Promise.reject(err);
       }
-      return Promise.reject(err);
-    });
+    );
 };
 
 export { getRequest };
