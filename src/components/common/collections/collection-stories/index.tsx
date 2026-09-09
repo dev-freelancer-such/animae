@@ -57,7 +57,7 @@ function CollectionStories({
 
   function handlePreviewStory(story: StoryInterface) {
     // TODO: Handle preview story action
-    console.log("Preview story:", story);
+    console.warn("Preview story:", story);
   }
 
   return (

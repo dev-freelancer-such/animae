@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { CategoriesInterface, StoryInterface } from "@/models/home.models";
+import { CategoriesInterface } from "@/models/home.models";
 
 import {
   Carousel,

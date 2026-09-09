@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslation } from "next-i18next";
 import React, { useRef, useState } from "react";
 
 import { Eye, Heart, Star, ThumbsUp } from "lucide-react";
@@ -110,7 +109,6 @@ interface StoryDetailContainerProps {
 export default function StoryDetailContainer({
   story,
 }: StoryDetailContainerProps) {
-  const { t } = useTranslation("common");
   const [liked, setLiked] = useState(story.isLiked ?? false);
   const [showFullDesc, setShowFullDesc] = useState(false);
 

@@ -36,7 +36,7 @@ axiosInstance.interceptors.response.use(
       if (refreshToken) {
         return axiosInstance
           .post("/core/auth/refresh-token", { refreshToken })
-          .then((res: any) => {
+          .then((res: { data: { accessToken: string; refreshToken: string } }) => {
             const accessToken = res?.data?.accessToken;
             axiosInstance.defaults.headers.common["Authorization"] =
               `Bearer ${accessToken}`;

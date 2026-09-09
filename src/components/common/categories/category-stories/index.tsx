@@ -56,7 +56,7 @@ function CategoryStories({
 
   function handlePreviewStory(story: CategoriesInterface) {
     // TODO: Handle preview story action
-    console.log("Preview story:", story);
+    console.warn("Preview story:", story);
   }
 
   return (

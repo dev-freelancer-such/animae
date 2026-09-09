@@ -6,7 +6,7 @@ import axiosInstance from "@/services/base/axiosInstance";
 
 import webStorageClient from "@/utils/webStorageClient";
 
-const getRequest = <T = any>(
+const getRequest = <T = unknown>(
   url: string,
   options?: RequestOptionsInterface
 ): Promise<T> => {
@@ -24,17 +24,17 @@ const getRequest = <T = any>(
 
   return axiosInstance
     .get(url, config)
-    .then((res: any) => {
+    .then((res: T & { message?: string }) => {
       if (enableFlashMessageSuccess && res?.message) {
         toast.success(res.message);
       }
       return res;
     })
-    .catch((err: any) => {
+    .catch((err: { response?: { data?: { errors?: { detail?: string }[]; message?: string } } }) => {
       if (enableFlashMessageError) {
         const errors = err?.response?.data?.errors;
         if (errors?.length > 0) {
-          errors.forEach((item: any) => toast.error(item.detail || "Error"));
+          errors.forEach(item => toast.error(item.detail || "Error"));
         } else {
           toast.error(err?.response?.data?.message || "Something went wrong");
         }
