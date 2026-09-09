@@ -26,7 +26,7 @@ function StoryCard({
   likes,
   isLiked,
   author,
-}: StoryInterface) {
+}: Omit<StoryInterface, "key">) {
   return (
     <article className="relative group cursor-pointer select-none rounded-lg overflow-hidden">
       <div
@@ -116,8 +116,8 @@ export default function StoryList({
   return (
     <>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {stories.map((story, idx) => (
-          <StoryCard key={`${story.key}-${idx}`} {...story} />
+        {stories.map(({ key, ...storyProps }, idx) => (
+          <StoryCard key={`${key}-${idx}`} {...storyProps} />
         ))}
       </div>
       <div ref={sentinelRef} className="h-4" />
