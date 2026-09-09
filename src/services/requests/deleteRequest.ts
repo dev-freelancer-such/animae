@@ -26,11 +26,12 @@ const deleteRequest = <T = unknown>(
 
   return axiosInstance
     .delete(url, config)
-    .then((res: T & { message?: string }) => {
-      if (enableFlashMessageSuccess && res?.message) {
-        toast.success(res.message);
+    .then((res) => {
+      const data = res as unknown as T & { message?: string };
+      if (enableFlashMessageSuccess && data?.message) {
+        toast.success(data.message);
       }
-      return res;
+      return data;
     })
     .catch((err: { response?: { data?: { errors?: { detail?: string }[]; message?: string } } }) => {
       if (enableFlashMessageError) {
