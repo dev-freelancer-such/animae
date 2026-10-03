@@ -1,76 +1,115 @@
 import { useTranslation } from "next-i18next";
-import dynamic from "next/dynamic";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
+  CategoriesInterface,
   CategoriesStoryInterface,
   HomeCollectionStoryInterface,
+  StoryInterface,
 } from "@/models/home.models";
+import { SeoMetaInterface } from "@/models/seo.models";
 
-import { bannerHomeMockup, categoriesMockup } from "@/helpers/mockups/home";
+import { getCategories, getStories } from "@/services/requests/stories";
 
-const Banner = dynamic(() => import("./banner"), {
-  loading: () => <div>Loading...</div>,
-  ssr: false,
-});
+import { mapCategory, mapStory } from "@/utils/story.mapper";
 
-const CollectionStoriesContainer = dynamic(
-  () => import("@/components/common/collections"),
-  {
-    loading: () => <div>Loading...</div>,
-    ssr: false,
-  }
-);
+import CategoriesStory from "@/components/common/categories";
+import CollectionStoriesContainer from "@/components/common/collections";
+import { JsonLd } from "@/components/common/json-ld";
+import { SeoHead } from "@/components/common/seo-head";
 
-const CategoriesStory = dynamic(
-  () => import("@/components/common/categories"),
-  {
-    loading: () => <div>Loading...</div>,
-    ssr: false,
-  }
-);
+import Banner from "./banner";
+import NewlyUpdate from "./newly-update";
 
-const NewlyUpdate = dynamic(() => import("./newly-update"), {
-  loading: () => <div>Loading...</div>,
-  ssr: false,
-});
+interface HomePageProps {
+  stories: StoryInterface[];
+  categories: CategoriesInterface[];
+  seo: SeoMetaInterface;
+}
 
-function HomePage() {
+function pickStories(list: StoryInterface[], start: number, size: number) {
+  if (list.length === 0) return [];
+  return Array.from({ length: Math.min(size, list.length) }, (_, i) => {
+    return list[(start + i) % list.length];
+  });
+}
+
+function HomePage({
+  stories: initialStories = [],
+  categories: initialCategories = [],
+  seo,
+}: HomePageProps) {
   const { t } = useTranslation("home");
+  const [stories, setStories] = useState<StoryInterface[]>(
+    Array.isArray(initialStories) ? initialStories : []
+  );
+  const [categories, setCategories] = useState<CategoriesInterface[]>(
+    Array.isArray(initialCategories) ? initialCategories : []
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+
+    Promise.all([getStories({ take: 40, skip: 0 }), getCategories()])
+      .then(([apiStories, apiCategories]) => {
+        if (cancelled) return;
+        if (apiStories.length) setStories(apiStories.map(mapStory));
+        if (apiCategories.length) setCategories(apiCategories.map(mapCategory));
+      })
+      .catch(() => undefined);
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const trending = [...stories].sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
+
   const collectionLatestReleaseProps: HomeCollectionStoryInterface = {
     label: t("latest-release"),
     actionNext: t("drag-to-next"),
-    stories: Array(10).fill(bannerHomeMockup?.[0]),
+    stories: pickStories(stories, 0, 12),
   };
 
   const collectionTopTrendingProps: HomeCollectionStoryInterface = {
     label: t("top-trending"),
     actionNext: t("drag-to-next"),
-    stories: Array(10).fill(bannerHomeMockup?.[3]),
+    stories: pickStories(trending, 0, 12),
   };
 
   const categoriesStoryProps: CategoriesStoryInterface = {
     label: t("categories"),
     actionNext: t("drag-to-next"),
-    categories: categoriesMockup,
+    categories,
   };
 
   const forYouProps: HomeCollectionStoryInterface = {
     label: t("for-you"),
     actionNext: t("drag-to-next"),
-    stories: Array(10).fill(bannerHomeMockup?.[0]),
+    stories: pickStories(stories, 3, 12),
   };
 
   const randomStoryProps: HomeCollectionStoryInterface = {
     label: t("random-story"),
     actionNext: t("drag-to-next"),
-    stories: Array(10).fill(bannerHomeMockup?.[0]),
+    stories: pickStories(stories, 5, 12),
   };
 
   return (
     <section>
+      <SeoHead {...seo} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: seo.title,
+          description: seo.description,
+          url: seo.canonicalUrl ?? seo.ogUrl,
+        }}
+      />
+
       <div id="latest-release" className="scroll-mt-24">
-        <Banner />
+        <Banner stories={stories} />
 
         <CollectionStoriesContainer
           collectionStoriesProps={collectionLatestReleaseProps}
@@ -89,7 +128,7 @@ function HomePage() {
       </div>
 
       <div id="newly-update" className="scroll-mt-24">
-        <NewlyUpdate />
+        <NewlyUpdate stories={pickStories(stories, 0, 14)} />
       </div>
 
       <div id="for-you" className="scroll-mt-24">

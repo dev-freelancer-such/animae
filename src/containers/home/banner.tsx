@@ -1,6 +1,7 @@
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-import { bannerHomeMockup } from "@/helpers/mockups/home";
+import { StoryInterface } from "@/models/home.models";
 
 import BannerHome from "@/components/common/banner-home";
 import { Typography } from "@/components/ui";
@@ -14,10 +15,15 @@ import {
 } from "@/components/ui/Carousel";
 import Image from "@/components/ui/Image";
 
-function Banner() {
+interface BannerProps {
+  stories: StoryInterface[];
+}
+
+function Banner({ stories }: BannerProps) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [api, setApi] = useState<CarouselApi>();
-  const activeBanner = bannerHomeMockup[activeIndex];
+  const banners = stories.slice(0, 8);
+  const activeBanner = banners[activeIndex];
 
   const handleThumbnailClick = (index: number) => {
     setActiveIndex(index);
@@ -25,16 +31,16 @@ function Banner() {
   };
 
   useEffect(() => {
-    if (!api) return;
+    if (!api || banners.length === 0) return;
 
     const autoScroll = setInterval(() => {
-      const nextIndex = (activeIndex + 1) % bannerHomeMockup.length;
+      const nextIndex = (activeIndex + 1) % banners.length;
       setActiveIndex(nextIndex);
       api.scrollTo(nextIndex);
     }, 5000);
 
     return () => clearInterval(autoScroll);
-  }, [api, activeIndex]);
+  }, [api, activeIndex, banners.length]);
 
   useEffect(() => {
     if (!api) return;
@@ -49,13 +55,21 @@ function Banner() {
     };
   }, [api]);
 
+  if (!activeBanner) {
+    return (
+      <section className="mx-auto w-full py-32 text-center">
+        <Typography color="white">Chưa có truyện để hiển thị</Typography>
+      </section>
+    );
+  }
+
   return (
-    <section className="mx-auto w-full">
+    <section className="mx-auto w-full" aria-label="Truyện nổi bật">
       <div className="relative h-fit overflow-hidden rounded-2xl shadow-2xl flex justify-center">
         <Image
           key={`banner-${activeIndex}`}
-          src={activeBanner?.thumbnail}
-          alt={activeBanner?.altText}
+          src={activeBanner.thumbnail}
+          alt={activeBanner.altText}
           fill
           className="object-cover transition-all duration-500 ease-in-out"
           priority
@@ -70,9 +84,11 @@ function Banner() {
             <Typography className="text-primary-foreground mt-5 uppercase">
               {activeBanner.author}
             </Typography>
-            <Typography variant="title" color="white">
-              {activeBanner.title}
-            </Typography>
+            <Link href={`/${activeBanner.key}`}>
+              <Typography variant="title" color="white">
+                {activeBanner.title}
+              </Typography>
+            </Link>
 
             <Typography
               className="mt-10 line-clamp-4"
@@ -98,7 +114,7 @@ function Banner() {
               <CarouselNext className="absolute left-12 top-1/2 -translate-y-1/2 z-10 flex justify-center items-center" />
 
               <CarouselContent className="ml-0">
-                {bannerHomeMockup.map((banner, index) => (
+                {banners.map((banner, index) => (
                   <CarouselItem
                     key={banner.key}
                     className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/4 pl-2 md:pl-4"

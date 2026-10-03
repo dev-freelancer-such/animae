@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 import { StoryInterface } from "@/models/home.models";
@@ -55,9 +56,10 @@ function CollectionStories({
     );
   };
 
+  const router = useRouter();
+
   function handlePreviewStory(story: StoryInterface) {
-    // TODO: Handle preview story action
-    console.warn("Preview story:", story);
+    router.push(`/${story.key}`);
   }
 
   return (

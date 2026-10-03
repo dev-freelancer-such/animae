@@ -6,10 +6,15 @@ export interface ChapterInterface {
   title: string;
   updatedAt: string;
   thumbnail?: string | StaticImageData;
+  content?: string;
+  images?: string[];
+  storySlug?: string;
+  storyTitle?: string;
 }
 
 export interface StoryInterface {
   key: string;
+  slug?: string;
   title: string;
   description: string;
   thumbnail: string | StaticImageData;

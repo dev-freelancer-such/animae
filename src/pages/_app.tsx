@@ -11,7 +11,7 @@ import "@/styles/globals.css";
 
 const getManrope = Manrope({
   variable: "--font-manrope",
-  subsets: ["latin"],
+  subsets: ["latin", "vietnamese"],
 });
 
 const getAnton = Anton({
@@ -22,17 +22,17 @@ const getAnton = Anton({
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <main
+    <div
       className={cn(
-        `max-container ${getManrope.className} ${getAnton.className} bg-black flex flex-col items-center justify-center`
+        `max-container ${getManrope.className} ${getAnton.className} bg-black flex flex-col items-center justify-center min-h-screen`
       )}
     >
       <Header />
-      <div className="container">
+      <main className="container w-full flex-1">
         <Component {...pageProps} />
-      </div>
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
 

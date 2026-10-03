@@ -1,11 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  env: {
+    NEXT_PUBLIC_API_SERVER:
+      process.env.NEXT_PUBLIC_API_SERVER || "https://crawler-be.duckdns.org",
+    NEXT_PUBLIC_BASE_URL:
+      process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3001",
+  },
   reactStrictMode: true,
   i18n: {
     locales: ["en", "vi", "ja"],
-    defaultLocale: "en",
+    defaultLocale: "vi",
+  },
+  images: {
+    unoptimized: true,
   },
 };
 

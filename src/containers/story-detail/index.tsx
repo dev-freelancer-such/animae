@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useRef, useState } from "react";
 
 import { Eye, Heart, Star, ThumbsUp } from "lucide-react";
@@ -71,7 +72,10 @@ function LazyImage({ src, alt, className }: LazyImageProps) {
 // ---------------------------------------------------------------------------
 function ChapterRow({ chapter }: { chapter: ChapterInterface }) {
   return (
-    <div className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 cursor-pointer transition-colors duration-200 group">
+    <Link
+      href={`/chapter/${chapter.key}`}
+      className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 cursor-pointer transition-colors duration-200 group"
+    >
       <div className="flex items-center gap-3">
         <Typography variant="caption" color="default" className="w-12 shrink-0">
           Ch. {chapter.number}
@@ -86,7 +90,7 @@ function ChapterRow({ chapter }: { chapter: ChapterInterface }) {
       <Typography variant="caption" color="default" className="shrink-0 ml-4">
         {chapter.updatedAt}
       </Typography>
-    </div>
+    </Link>
   );
 }
 
@@ -150,7 +154,7 @@ export default function StoryDetailContainer({
 
         {/* Info */}
         <div className="flex-1 min-w-0">
-          <Typography variant="h3" color="white" className="mb-1">
+          <Typography as="h1" variant="h3" color="white" className="mb-1">
             {story.title}
           </Typography>
           <Typography color="default" className="mb-4">

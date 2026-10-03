@@ -15,7 +15,8 @@ const getRequest = <T = unknown>(
     enableFlashMessageSuccess = false,
     enableFlashMessageError = false,
   } = options || {};
-  const token = webStorageClient.getToken();
+  const token =
+    typeof window === "undefined" ? undefined : webStorageClient.getToken();
 
   const config = {
     params,

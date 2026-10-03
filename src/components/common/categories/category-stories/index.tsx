@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 import { CategoriesInterface } from "@/models/home.models";
@@ -54,9 +55,10 @@ function CategoryStories({
     );
   };
 
-  function handlePreviewStory(story: CategoriesInterface) {
-    // TODO: Handle preview story action
-    console.warn("Preview story:", story);
+  const router = useRouter();
+
+  function handlePreviewStory(category: CategoriesInterface) {
+    router.push(`/products?q=${encodeURIComponent(category.title)}`);
   }
 
   return (

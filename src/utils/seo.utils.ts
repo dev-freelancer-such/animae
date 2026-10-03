@@ -50,8 +50,8 @@ export function createSeoMeta({
   ogType = SEO_DEFAULTS.defaultOgType,
   ogLocale = SEO_DEFAULTS.defaultLocale,
   twitterCard = SEO_DEFAULTS.defaultTwitterCard,
-  twitterSite = SEO_DEFAULTS.twitterSite || undefined,
-  twitterCreator,
+  twitterSite = SEO_DEFAULTS.twitterSite,
+  twitterCreator = "",
   twitterTitle,
   twitterDescription,
   twitterImage,
@@ -59,7 +59,7 @@ export function createSeoMeta({
   canonicalUrl,
   robots = SEO_DEFAULTS.defaultRobots,
   noIndex = false,
-  keywords,
+  keywords = "",
 }: CreateSeoMetaOptions): SeoMetaResult {
   const pageUrl = path
     ? `${SEO_DEFAULTS.baseUrl}${path}`

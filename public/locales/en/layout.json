@@ -8,7 +8,10 @@
             "random-story":"Random story",
             "search":"Search",
             "category-story":"Category story",
-            "for-you":"For you"
+            "for-you":"For you",
+            "home":"Home",
+            "all-stories":"All stories",
+            "list":"List"
         }
     },
 

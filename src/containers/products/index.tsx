@@ -12,9 +12,11 @@ import { StoryInterface } from "@/models/home.models";
 
 import { VIEW_MAX } from "@/constants/products.constants";
 
-import { bannerHomeMockup } from "@/helpers/mockups/home";
-
 import { useRouter } from "@/hooks/useRouter";
+
+import { getStories } from "@/services/requests/stories";
+
+import { mapStory, toApiStoryStatus } from "@/utils/story.mapper";
 
 import { Typography } from "@/components/ui";
 
@@ -26,10 +28,6 @@ const StoryList = dynamic(() => import("./story-list"), {
 });
 
 const PAGE_SIZE = 10;
-
-const ALL_STORIES: StoryInterface[] = Array(20)
-  .fill(null)
-  .map((_, i) => bannerHomeMockup[i % bannerHomeMockup.length]);
 
 type RawQuery = Record<string, string | string[] | undefined>;
 
@@ -74,16 +72,44 @@ export default function ProductsContainer() {
     ]);
   };
 
+  const [allStories, setAllStories] = useState<StoryInterface[]>([]);
+  const [fetching, setFetching] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    setFetching(true);
+    getStories({
+      keyword: filter.search || "",
+      take: 80,
+      skip: 0,
+      storyStatus: toApiStoryStatus(filter.status) || "",
+    })
+      .then(list => {
+        if (!cancelled) setAllStories(list.map(mapStory));
+      })
+      .catch(() => {
+        if (!cancelled) setAllStories([]);
+      })
+      .finally(() => {
+        if (!cancelled) setFetching(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [filter.search, filter.status]);
+
   const filteredStories = useMemo(() => {
-    const q = filter.search.trim().toLowerCase();
-    const result = [...ALL_STORIES].filter(
-      s =>
+    const result = allStories.filter(s => {
+      const viewsOk =
         (s.views ?? 0) >= filter.viewRange[0] &&
-        (s.views ?? 0) <= filter.viewRange[1] &&
-        (!q ||
-          s.title.toLowerCase().includes(q) ||
-          s.author.toLowerCase().includes(q))
-    );
+        (s.views ?? 0) <= filter.viewRange[1];
+      const genreOk =
+        filter.genres.length === 0 ||
+        filter.genres.some(g =>
+          (s.genres ?? []).some(name => name.toLowerCase() === g.toLowerCase())
+        );
+      return viewsOk && genreOk;
+    });
 
     if (filter.sortBy === "views") {
       result.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
@@ -94,13 +120,13 @@ export default function ProductsContainer() {
     }
 
     return result;
-  }, [filter]);
+  }, [allStories, filter]);
 
   const [displayedStories, setDisplayedStories] = useState<StoryInterface[]>(
     []
   );
   const [page, setPage] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(fetching);
   const [hasMore, setHasMore] = useState(true);
   const loadingRef = useRef(false);
   const hasMoreRef = useRef(true);
@@ -121,7 +147,7 @@ export default function ProductsContainer() {
     if (page === 0) {
       setDisplayedStories(filteredStories.slice(0, PAGE_SIZE));
       setHasMore(filteredStories.length > PAGE_SIZE);
-      setIsLoading(false);
+      setIsLoading(fetching);
       loadingRef.current = false;
       return;
     }
@@ -145,7 +171,7 @@ export default function ProductsContainer() {
     }, 600);
 
     return () => clearTimeout(timer);
-  }, [filteredStories, page]);
+  }, [filteredStories, page, fetching]);
 
   const handleLoadMore = useCallback(() => {
     if (!loadingRef.current && hasMoreRef.current) {

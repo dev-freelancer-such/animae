@@ -1,6 +1,6 @@
 export const SEO_DEFAULTS = {
   siteName: "Animae",
-  baseUrl: process.env.NEXT_PUBLIC_BASE_URL ?? "https://animae.vercel.app",
+  baseUrl: process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3001",
   defaultTitle: "Animae - Manga & Comic Online",
   defaultDescription:
     "Đọc manga, truyện tranh online miễn phí. Cập nhật nhanh nhất, đầy đủ nhất.",

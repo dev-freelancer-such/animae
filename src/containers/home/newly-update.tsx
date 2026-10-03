@@ -3,13 +3,15 @@ import React from "react";
 
 import { StoryInterface } from "@/models/home.models";
 
-import { bannerHomeMockup } from "@/helpers/mockups/home";
-
 import CardStory from "@/components/common/collections/collection-stories/card-story";
 import DragToNextBtn from "@/components/common/collections/collection-stories/drag-to-next-btn";
 import { Typography } from "@/components/ui";
 
-function NewlyUpdate() {
+interface NewlyUpdateProps {
+  stories: StoryInterface[];
+}
+
+function NewlyUpdate({ stories }: NewlyUpdateProps) {
   const { t } = useTranslation("home");
 
   return (
@@ -29,8 +31,8 @@ function NewlyUpdate() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 mt-5">
-          {bannerHomeMockup?.map((story: StoryInterface, index: number) => (
-            <CardStory {...story} indexProp={index} key={String(index)} />
+          {stories.map((story, index) => (
+            <CardStory {...story} indexProp={index} key={story.key} />
           ))}
         </div>
       </div>
