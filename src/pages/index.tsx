@@ -1,8 +1,8 @@
 import HomePage from "@/containers/home";
 
 import { GetServerSideProps } from "next";
-import type { ComponentProps } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import type { ComponentProps } from "react";
 
 import { ApiCategory, ApiStory } from "@/models/api.models";
 
@@ -33,7 +33,9 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
       stories: (Array.isArray(stories) ? stories : []).map(mapStory),
-      categories: (Array.isArray(categories) ? categories : []).map(mapCategory),
+      categories: (Array.isArray(categories) ? categories : []).map(
+        mapCategory
+      ),
       seo,
       ...(await serverSideTranslations(locale ?? "vi", [
         "common",

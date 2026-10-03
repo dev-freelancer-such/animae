@@ -6,15 +6,15 @@ import { ApiChapter } from "@/models/api.models";
 import { ChapterInterface } from "@/models/home.models";
 import { SeoMetaInterface } from "@/models/seo.models";
 
-import { JsonLd } from "@/components/common/json-ld";
-import { SeoHead } from "@/components/common/seo-head";
-import { Image, Typography } from "@/components/ui";
-
-import { endpoints } from "@/services/endpoint";
 import { requestApi } from "@/services/api/server";
+import { endpoints } from "@/services/endpoint";
 
 import { createSeoMeta } from "@/utils/seo.utils";
 import { mapChapter } from "@/utils/story.mapper";
+
+import { JsonLd } from "@/components/common/json-ld";
+import { SeoHead } from "@/components/common/seo-head";
+import { Image, Typography } from "@/components/ui";
 
 interface ChapterPageProps {
   chapter: ChapterInterface;

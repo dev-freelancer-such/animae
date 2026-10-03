@@ -3,9 +3,9 @@ import ProductsContainer from "@/containers/products";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { SeoHead } from "@/components/common/seo-head";
-
 import { createSeoMeta } from "@/utils/seo.utils";
+
+import { SeoHead } from "@/components/common/seo-head";
 
 const seo = createSeoMeta({
   title: "Kho truyện",

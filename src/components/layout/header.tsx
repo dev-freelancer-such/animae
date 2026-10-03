@@ -55,12 +55,17 @@ function Header() {
             </span>
             <div className="menu-panel">
               {loading && (
-                <p className="px-4 py-2 text-xs text-neutral-500">Đang tải...</p>
+                <p className="px-4 py-2 text-xs text-neutral-500">
+                  Đang tải...
+                </p>
               )}
               <ul>
                 {lists.map(item => (
                   <li key={item.slug}>
-                    <Link href={menuHref(item, "list")} className="menu-panel-link">
+                    <Link
+                      href={menuHref(item, "list")}
+                      className="menu-panel-link"
+                    >
                       {item.name}
                     </Link>
                   </li>
@@ -76,7 +81,9 @@ function Header() {
             </span>
             <div className="menu-panel menu-panel--genre">
               {loading && (
-                <p className="px-4 py-2 text-xs text-neutral-500">Đang tải...</p>
+                <p className="px-4 py-2 text-xs text-neutral-500">
+                  Đang tải...
+                </p>
               )}
               {!loading && categories.length === 0 && (
                 <p className="px-4 py-2 text-xs text-neutral-500">

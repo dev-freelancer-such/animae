@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { ApiCategory, HomeMenu } from "@/models/api.models";
+import { HomeMenu } from "@/models/api.models";
 
 import { getHomeMenu } from "@/services/requests/stories";
 

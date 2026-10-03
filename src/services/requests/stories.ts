@@ -6,8 +6,8 @@ import {
   HomeMenu,
 } from "@/models/api.models";
 
-import { endpoints } from "@/services/endpoint";
 import { unwrapData, unwrapList } from "@/services/api/unwrap";
+import { endpoints } from "@/services/endpoint";
 import { getRequest } from "@/services/requests/getRequest";
 
 export const getStories = (params?: Record<string, string | number>) =>
@@ -16,8 +16,8 @@ export const getStories = (params?: Record<string, string | number>) =>
   );
 
 export const getStoryBySlug = (slug: string) =>
-  getRequest<ApiSuccess<ApiStory>>(endpoints.stories.DETAIL(slug)).then(
-    res => unwrapData<ApiStory>(res)
+  getRequest<ApiSuccess<ApiStory>>(endpoints.stories.DETAIL(slug)).then(res =>
+    unwrapData<ApiStory>(res)
   );
 
 export const getCategories = (params?: Record<string, string>) =>

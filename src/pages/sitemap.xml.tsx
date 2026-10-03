@@ -4,15 +4,16 @@ import { ApiStory } from "@/models/api.models";
 
 import { SEO_DEFAULTS } from "@/constants/common.constants";
 
-import { endpoints } from "@/services/endpoint";
 import { requestApi } from "@/services/api/server";
+import { endpoints } from "@/services/endpoint";
 
 function generateSitemap(slugs: string[]) {
   const base = SEO_DEFAULTS.baseUrl.replace(/\/$/, "");
   const staticPaths = ["", "/products"];
   const urls = [
     ...staticPaths.map(
-      path => `  <url><loc>${base}${path || "/"}</loc><changefreq>hourly</changefreq></url>`
+      path =>
+        `  <url><loc>${base}${path || "/"}</loc><changefreq>hourly</changefreq></url>`
     ),
     ...slugs.map(
       slug =>

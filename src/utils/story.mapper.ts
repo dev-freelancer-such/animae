@@ -1,5 +1,9 @@
 import { ApiCategory, ApiChapter, ApiStory } from "@/models/api.models";
-import { CategoriesInterface, ChapterInterface, StoryInterface } from "@/models/home.models";
+import {
+  CategoriesInterface,
+  ChapterInterface,
+  StoryInterface,
+} from "@/models/home.models";
 
 const CATEGORY_COLORS = [
   "from-red-500 to-orange-500",

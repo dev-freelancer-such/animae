@@ -13,10 +13,10 @@ import { getCategories, getStories } from "@/services/requests/stories";
 
 import { mapCategory, mapStory } from "@/utils/story.mapper";
 
-import { JsonLd } from "@/components/common/json-ld";
-import { SeoHead } from "@/components/common/seo-head";
 import CategoriesStory from "@/components/common/categories";
 import CollectionStoriesContainer from "@/components/common/collections";
+import { JsonLd } from "@/components/common/json-ld";
+import { SeoHead } from "@/components/common/seo-head";
 
 import Banner from "./banner";
 import NewlyUpdate from "./newly-update";
@@ -50,10 +50,7 @@ function HomePage({
   useEffect(() => {
     let cancelled = false;
 
-    Promise.all([
-      getStories({ take: 40, skip: 0 }),
-      getCategories(),
-    ])
+    Promise.all([getStories({ take: 40, skip: 0 }), getCategories()])
       .then(([apiStories, apiCategories]) => {
         if (cancelled) return;
         if (apiStories.length) setStories(apiStories.map(mapStory));

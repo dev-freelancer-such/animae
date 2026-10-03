@@ -7,14 +7,14 @@ import { ApiStory } from "@/models/api.models";
 import { StoryInterface } from "@/models/home.models";
 import { SeoMetaInterface } from "@/models/seo.models";
 
-import { JsonLd } from "@/components/common/json-ld";
-import { SeoHead } from "@/components/common/seo-head";
-
-import { endpoints } from "@/services/endpoint";
 import { requestApi } from "@/services/api/server";
+import { endpoints } from "@/services/endpoint";
 
 import { createSeoMeta } from "@/utils/seo.utils";
 import { mapStory } from "@/utils/story.mapper";
+
+import { JsonLd } from "@/components/common/json-ld";
+import { SeoHead } from "@/components/common/seo-head";
 
 interface StoryDetailPageProps {
   story: StoryInterface;

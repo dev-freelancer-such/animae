@@ -106,9 +106,7 @@ export default function ProductsContainer() {
       const genreOk =
         filter.genres.length === 0 ||
         filter.genres.some(g =>
-          (s.genres ?? []).some(
-            name => name.toLowerCase() === g.toLowerCase()
-          )
+          (s.genres ?? []).some(name => name.toLowerCase() === g.toLowerCase())
         );
       return viewsOk && genreOk;
     });
