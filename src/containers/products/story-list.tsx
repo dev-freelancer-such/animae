@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 
 import { Eye, ThumbsUp } from "lucide-react";
@@ -18,6 +19,7 @@ interface StoryListProps {
 }
 
 function StoryCard({
+  slug,
   title,
   description,
   thumbnail,
@@ -26,9 +28,10 @@ function StoryCard({
   likes,
   isLiked,
   author,
-}: Omit<StoryInterface, "key">) {
+}: Omit<StoryInterface, "key"> & { slug?: string }) {
   return (
-    <article className="relative group cursor-pointer select-none rounded-lg overflow-hidden">
+    <article className="relative group select-none rounded-lg overflow-hidden">
+      <Link href={`/${slug || ""}`} className="block" aria-label={title}>
       <div
         className={cn(
           "w-6 h-6 rounded-full flex items-center justify-center absolute top-2 right-2 z-20 cursor-pointer transition-all duration-300",
@@ -74,6 +77,7 @@ function StoryCard({
           </div>
         </div>
       </div>
+      </Link>
     </article>
   );
 }
@@ -116,9 +120,10 @@ export default function StoryList({
   return (
     <>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {stories.map(({ key, ...storyProps }, idx) => (
-          <StoryCard key={`${key}-${idx}`} {...storyProps} />
-        ))}
+        {stories.map((story, idx) => {
+          const { key, ...rest } = story;
+          return <StoryCard key={`${key}-${idx}`} {...rest} slug={story.slug || key} />;
+        })}
       </div>
       <div ref={sentinelRef} className="h-4" />
       {isLoading && (

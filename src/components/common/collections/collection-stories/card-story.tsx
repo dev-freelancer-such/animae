@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 import { Eye, ThumbsUp } from "lucide-react";
@@ -12,6 +13,7 @@ import icHeart from "@/assets/icons/common/ic-heart.svg";
 
 function CardStory({
   key,
+  slug,
   title,
   description,
   thumbnail,
@@ -23,8 +25,10 @@ function CardStory({
   indexProp,
   isRanked,
 }: StoryInterface) {
+  const href = `/${slug || key}`;
   return (
-    <article className="h-full w-full max-w-52 relative select-none group cursor-pointer">
+    <article className="h-full w-full max-w-52 relative select-none group">
+      <Link href={href} className="block" aria-label={title}>
       <div
         className={cn(
           "w-6 h-6 rounded-full bg-secondary/70 hover:bg-secondary flex items-center justify-center absolute top-2 right-2 z-20 cursor-pointer transition-all duration-300",
@@ -79,6 +83,7 @@ function CardStory({
           {Number(indexProp) + 1}
         </Typography>
       )}
+      </Link>
     </article>
   );
 }

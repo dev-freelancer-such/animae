@@ -5,6 +5,17 @@ import {
   HeaderMenuOptionsInterface,
 } from "@/models/layouts.models";
 
+const headerListMenu = [
+  { key: "truyen-moi-cap-nhat", label: "Truyện mới cập nhật" },
+  { key: "truyen-full", label: "Truyện Full" },
+  { key: "ngon-tinh-hay", label: "Ngôn Tình Hay" },
+  { key: "ngon-tinh-nguoc", label: "Ngôn Tình Ngược" },
+  { key: "dam-my-hay", label: "Đam Mỹ Hay" },
+  { key: "truyen-hot", label: "Truyện Hot" },
+  { key: "kiem-hiep-tien-hiep", label: "Kiếm Hiệp - Tiên Hiệp" },
+  { key: "review-truyen", label: "Review Truyện" },
+];
+
 const headerMenuOptions = (t: TFunction): HeaderMenuOptionsInterface[] => {
   return [
     {
@@ -143,4 +154,4 @@ const footerSections = (t: TFunction): FooterSectionInterface[] => {
   ];
 };
 
-export { headerMenuOptions, footerSections };
+export { headerMenuOptions, headerListMenu, footerSections };

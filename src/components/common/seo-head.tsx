@@ -54,6 +54,8 @@ export function SeoHead({
       <meta name="robots" content={resolvedRobots} />
 
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="alternate" hrefLang="x-default" href={canonicalUrl ?? ogUrl} />
 
       {/* Open Graph */}
       <meta property="og:site_name" content={siteName} />

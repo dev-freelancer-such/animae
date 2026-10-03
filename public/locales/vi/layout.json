@@ -8,7 +8,10 @@
             "random-story":"Truyện ngẫu nhiên",
             "search":"Tìm kiếm",
             "category-story":"Thể loại",
-            "for-you":"Dành cho bạn"
+            "for-you":"Dành cho bạn",
+            "home":"Trang chủ",
+            "all-stories":"Kho truyện",
+            "list":"Danh sách"
         }
     },
     "footer":{
