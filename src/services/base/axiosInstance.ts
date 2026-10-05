@@ -2,6 +2,7 @@ import { constants } from "@/settings";
 
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 
+import { getVisitorId } from "@/utils/visitorId";
 import webStorageClient from "@/utils/webStorageClient";
 
 type RetryConfig = InternalAxiosRequestConfig & { _retry?: boolean };
@@ -30,6 +31,10 @@ axiosInstance.interceptors.request.use(
     const token = readToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+    }
+    const visitorId = getVisitorId();
+    if (visitorId) {
+      config.headers[constants.VISITOR_HEADER] = visitorId;
     }
     return config;
   },

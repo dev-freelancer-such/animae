@@ -21,6 +21,9 @@ const endpoints = {
   menu: {
     HOME: `${prefixApi}/menu`,
   },
+  vip: {
+    TIERS: `${prefixApi}/vip/tiers`,
+  },
 };
 
 export { endpoints, prefixApi, prefixAuth };

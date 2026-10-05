@@ -12,7 +12,6 @@ import { Image, Typography } from "@/components/ui";
 import icHeart from "@/assets/icons/common/ic-heart.svg";
 
 function CardStory({
-  key,
   slug,
   title,
   description,
@@ -25,7 +24,7 @@ function CardStory({
   indexProp,
   isRanked,
 }: StoryInterface) {
-  const href = `/${slug || key}`;
+  const href = `/${slug || ""}`;
   return (
     <article className="h-full w-full max-w-52 relative select-none group">
       <Link href={href} className="block" aria-label={title}>
@@ -35,12 +34,12 @@ function CardStory({
             isLiked ? "bg-secondary" : "bg-secondary/70"
           )}
         >
-          <Image src={icHeart} alt="icon heart" />
+          <Image src={icHeart} alt="icon heart" width={14} height={14} />
         </div>
 
         <Image
           src={thumbnail}
-          alt={`${altText}-${key}`}
+          alt={`${altText}-${indexProp ?? ""}`}
           className="h-60 object-cover w-full rounded-lg transition-all duration-300 group-hover:blur-sm"
         />
 

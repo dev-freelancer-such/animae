@@ -20,6 +20,7 @@ import { SeoHead } from "@/components/common/seo-head";
 
 import Banner from "./banner";
 import NewlyUpdate from "./newly-update";
+import VipTiers from "./vip-tiers";
 
 interface HomePageProps {
   stories: StoryInterface[];
@@ -123,7 +124,7 @@ function HomePage({
         />
       </div>
 
-      <div id="category-story" className="scroll-mt-24">
+      <div id="category-story" className="scroll-mt-24 overflow-x-hidden">
         <CategoriesStory categoriesProps={categoriesStoryProps} />
       </div>
 

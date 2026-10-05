@@ -2,7 +2,7 @@ import NextImage, {
   ImageProps as NextImageProps,
   StaticImageData,
 } from "next/image";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import imgDefault from "@/assets/images/common/img-default.jpg";
 
@@ -10,7 +10,7 @@ type Src = string | StaticImageData;
 
 export interface ImageWithFallbackProps
   extends Omit<NextImageProps, "src" | "onError"> {
-  src: Src;
+  src?: Src | null;
   alt: string;
   fallbackSrc?: Src;
   className?: string;
@@ -19,19 +19,32 @@ export interface ImageWithFallbackProps
   placeholderProp?: "blur" | "empty";
 }
 
-const DEFAULT_FALLBACK = "/images/fallback.png";
+function resolveSrc(src?: Src | null, fallback: Src = imgDefault): Src {
+  if (!src || (typeof src === "string" && !src.trim())) return fallback;
+  return src;
+}
 
 const Image: React.FC<ImageWithFallbackProps> = ({
   src,
   alt,
-  fallbackSrc = DEFAULT_FALLBACK,
+  fallbackSrc = imgDefault,
   className,
   onError,
   placeholderProp,
+  fill,
+  width,
+  height,
   ...rest
 }) => {
-  const [currentSrc, setCurrentSrc] = useState<Src>(src);
+  const [currentSrc, setCurrentSrc] = useState<Src>(() =>
+    resolveSrc(src, fallbackSrc)
+  );
   const [errored, setErrored] = useState(false);
+
+  useEffect(() => {
+    setCurrentSrc(resolveSrc(src, fallbackSrc));
+    setErrored(false);
+  }, [src, fallbackSrc]);
 
   const handleError = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -47,11 +60,16 @@ const Image: React.FC<ImageWithFallbackProps> = ({
 
   return (
     <NextImage
-      src={currentSrc || imgDefault}
+      src={currentSrc}
       alt={alt}
       className={className}
       onError={handleError}
       placeholder={placeholderProp}
+      fill={fill}
+      {...(!fill && {
+        width: width ?? 400,
+        height: height ?? 600,
+      })}
       {...rest}
     />
   );

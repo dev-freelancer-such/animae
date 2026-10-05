@@ -3,6 +3,7 @@ import {
   ApiChapter,
   ApiStory,
   ApiSuccess,
+  ApiVipTiers,
   HomeMenu,
 } from "@/models/api.models";
 
@@ -38,3 +39,8 @@ export const getHomeMenu = () =>
       categories: data?.categories ?? [],
     };
   });
+
+export const getVipTiers = () =>
+  getRequest<ApiSuccess<ApiVipTiers>>(endpoints.vip.TIERS).then(res =>
+    unwrapData<ApiVipTiers>(res)
+  );

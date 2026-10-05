@@ -30,10 +30,10 @@ export function mapChapter(chapter: ApiChapter): ChapterInterface {
     updatedAt: chapter.updatedAt
       ? new Date(chapter.updatedAt).toLocaleDateString("vi-VN")
       : "",
-    content: chapter.content ?? undefined,
-    images: chapter.images,
-    storySlug: chapter.story?.slug,
-    storyTitle: chapter.story?.title,
+    content: chapter.content ?? "",
+    images: chapter.images ?? [],
+    storySlug: chapter.story?.slug ?? "",
+    storyTitle: chapter.story?.title ?? "",
   };
 }
 
@@ -46,14 +46,14 @@ export function mapStory(story: ApiStory): StoryInterface {
     slug: story.slug,
     title: story.title,
     description: story.description || "",
-    thumbnail: story.thumbnail || "/images/og-default.png",
+    thumbnail: story.thumbnail || "",
     altText: story.title,
     author: story.author?.name || "Unknown",
     subtitle: story.type || "",
     views: story.viewCount ?? 0,
     genres,
     status: STATUS_MAP[story.storyStatus ?? ""] ?? "ongoing",
-    chapters: story.chapters?.map(mapChapter),
+    chapters: story.chapters?.map(mapChapter) ?? [],
   };
 }
 

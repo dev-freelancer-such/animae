@@ -41,7 +41,7 @@ function CarouselCategoriesStories({
 
   return (
     <div
-      className="relative w-full"
+      className="relative min-w-0 flex-1 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -60,15 +60,18 @@ function CarouselCategoriesStories({
         <CarouselNext className="z-50 right-2 top-1/2 -translate-y-1/2 flex items-center justify-center" />
 
         <CarouselContent className="-ml-1 sm:-ml-2 md:-ml-4">
-          {categories.map(category => (
-            <CarouselItem
-              key={category?.key}
-              className="basis-full xs-min:basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 pl-1 sm:pl-2 md:pl-4 shrink-0"
-              onClick={() => onPreviewStory(category)}
-            >
-              <CardStory {...category} />
-            </CarouselItem>
-          ))}
+          {categories.map(category => {
+            const { key: categoryKey, ...categoryProps } = category;
+            return (
+              <CarouselItem
+                key={categoryKey}
+                className="basis-full xs-min:basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 pl-1 sm:pl-2 md:pl-4 shrink-0"
+                onClick={() => onPreviewStory(category)}
+              >
+                <CardStory {...categoryProps} />
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
       </Carousel>
     </div>

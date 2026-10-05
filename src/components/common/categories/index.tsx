@@ -10,8 +10,8 @@ interface CategoriesStoryProps {
 
 function CategoriesStory({ categoriesProps }: CategoriesStoryProps) {
   return (
-    <section className="max-container flex items-center justify-center">
-      <div className="container">
+    <section className="max-container flex items-center justify-center overflow-x-hidden">
+      <div className="container min-w-0 overflow-hidden">
         <CategoryStories {...categoriesProps} />
       </div>
     </section>
