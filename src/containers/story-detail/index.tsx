@@ -11,6 +11,8 @@ import { cn } from "@/utils/cn";
 
 import { Image, Typography } from "@/components/ui";
 
+import imgDefault from "@/assets/images/common/img-default.jpg";
+
 // ---------------------------------------------------------------------------
 // Lazy image with blur-up placeholder (IntersectionObserver)
 // ---------------------------------------------------------------------------
@@ -57,6 +59,10 @@ function LazyImage({ src, alt, className }: LazyImageProps) {
           loading="lazy"
           decoding="async"
           onLoad={() => setLoaded(true)}
+          onError={event => {
+            event.currentTarget.src = imgDefault.src;
+            setLoaded(true);
+          }}
           className={cn(
             "w-full h-full object-cover transition-opacity duration-500",
             loaded ? "opacity-100" : "opacity-0"

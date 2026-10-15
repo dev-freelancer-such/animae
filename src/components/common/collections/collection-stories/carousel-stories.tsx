@@ -63,15 +63,23 @@ function CarouselStories({
         <CarouselNext className="z-50 right-2 top-1/2 -translate-y-1/2 flex items-center justify-center" />
 
         <CarouselContent className="-ml-2 md:-ml-4">
-          {stories.map((story, index) => (
-            <CarouselItem
-              key={story?.key}
-              className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 pl-2 md:pl-4 shrink-0"
-              onClick={() => onPreviewStory(story)}
-            >
-              <CardStory {...story} isRanked={isRanked} indexProp={index} />
-            </CarouselItem>
-          ))}
+          {stories.map((story, index) => {
+            const { key: storyKey, ...storyProps } = story;
+            return (
+              <CarouselItem
+                key={storyKey}
+                className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 pl-2 md:pl-4 shrink-0"
+                onClick={() => onPreviewStory(story)}
+              >
+                <CardStory
+                  {...storyProps}
+                  slug={story.slug || storyKey}
+                  isRanked={isRanked}
+                  indexProp={index}
+                />
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
       </Carousel>
     </div>

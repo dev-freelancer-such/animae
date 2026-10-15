@@ -8,6 +8,8 @@ const constants = {
   ACCESS_TOKEN: "access_token",
   REFRESH_TOKEN: "refresh_token",
   REFRESH_PATH: "",
+  VISITOR_ID: "visitor_id",
+  VISITOR_HEADER: "X-Visitor-Id",
 };
 
 export { constants };

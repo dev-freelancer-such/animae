@@ -123,7 +123,7 @@ function HomePage({
         />
       </div>
 
-      <div id="category-story" className="scroll-mt-24">
+      <div id="category-story" className="scroll-mt-24 overflow-x-hidden">
         <CategoriesStory categoriesProps={categoriesStoryProps} />
       </div>
 

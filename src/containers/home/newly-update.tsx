@@ -31,9 +31,17 @@ function NewlyUpdate({ stories }: NewlyUpdateProps) {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 mt-5">
-          {stories.map((story, index) => (
-            <CardStory {...story} indexProp={index} key={story.key} />
-          ))}
+          {stories.map((story, index) => {
+            const { key: storyKey, ...storyProps } = story;
+            return (
+              <CardStory
+                key={storyKey}
+                {...storyProps}
+                slug={story.slug || storyKey}
+                indexProp={index}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

@@ -5,10 +5,13 @@ import { CategoriesInterface } from "@/models/home.models";
 
 import { Typography } from "@/components/ui";
 
-function CardCategory({ title, color }: CategoriesInterface) {
+function CardCategory({
+  title,
+  color,
+}: Pick<CategoriesInterface, "title" | "color">) {
   return (
     <article
-      className={`h-60 w-full max-w-52 relative select-none group rounded-lg bg-linear-to-br ${color} hover:shadow-lg hover:scale-[1.02] transition-all duration-300 flex items-center justify-center p-4 overflow-hidden`}
+      className={`h-60 w-full max-w-full relative select-none group rounded-lg bg-linear-to-br ${color} hover:shadow-lg hover:scale-[1.02] transition-all duration-300 flex items-center justify-center p-4 overflow-hidden`}
     >
       <Link
         href={`/products?q=${encodeURIComponent(title)}`}

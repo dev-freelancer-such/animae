@@ -62,8 +62,8 @@ function CategoryStories({
   }
 
   return (
-    <section className="mt-20 flex gap-6">
-      <div className="w-56 flex flex-col justify-between">
+    <section className="mt-20 flex min-w-0 gap-6 overflow-hidden">
+      <div className="w-56 shrink-0 flex flex-col justify-between">
         {renderLabel()}
 
         <DragToNextBtn label={actionNext} />

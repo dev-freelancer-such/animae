@@ -38,7 +38,7 @@ function StoryCard({
             isLiked ? "bg-secondary" : "bg-secondary/70 hover:bg-secondary"
           )}
         >
-          <Image src={icHeart} alt="icon heart" />
+          <Image src={icHeart} alt="icon heart" width={14} height={14} />
         </div>
 
         <Image

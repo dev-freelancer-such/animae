@@ -19,16 +19,13 @@ function BannerHome({
 }: BannerHomeProps) {
   return (
     <div
-      className={`group relative cursor-pointer transition-all h-full duration-300 overflow-hidden w-48 ${
-        index === activeIndex
-          ? "scale-105 ring-4 ring-primary"
-          : "hover:scale-102 "
-      }`}
+      className="group relative cursor-pointer aspect-[3/4] w-full overflow-hidden rounded-xl transition-all duration-300 hover:opacity-90"
       onClick={() => handleThumbnailClick(index)}
     >
       <Image
         src={banner.thumbnail}
         alt={banner.altText}
+        fill
         className="object-cover transition-transform duration-300 group-hover:scale-105"
       />
       <div

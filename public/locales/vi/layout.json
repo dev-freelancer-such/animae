@@ -11,7 +11,10 @@
             "for-you":"Dành cho bạn",
             "home":"Trang chủ",
             "all-stories":"Kho truyện",
-            "list":"Danh sách"
+            "list":"Danh sách",
+            "search-placeholder":"Tìm truyện...",
+            "loading":"Đang tải...",
+            "empty-category":"Chưa có thể loại"
         }
     },
     "footer":{

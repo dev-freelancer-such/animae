@@ -11,7 +11,10 @@
             "for-you":"For you",
             "home":"Home",
             "all-stories":"All stories",
-            "list":"List"
+            "list":"List",
+            "search-placeholder":"Search stories...",
+            "loading":"Loading...",
+            "empty-category":"No categories yet"
         }
     },
 
