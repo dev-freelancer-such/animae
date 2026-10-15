@@ -24,20 +24,6 @@ export interface HomeMenu {
   categories: ApiCategory[];
 }
 
-export interface ApiVipCard {
-  code: string;
-  name: string;
-  imageUrl: string;
-  minVipLevel: number;
-  maxVipLevel: number;
-  sortOrder: number;
-}
-
-export interface ApiVipTiers {
-  enabled: boolean;
-  cards: ApiVipCard[];
-}
-
 export interface ApiStoryCategory {
   storyId: string;
   categoryId: string;

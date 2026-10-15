@@ -23,7 +23,7 @@ function CardStory({
   author,
   indexProp,
   isRanked,
-}: StoryInterface) {
+}: Omit<StoryInterface, "key">) {
   const href = `/${slug || ""}`;
   return (
     <article className="h-full w-full max-w-52 relative select-none group">

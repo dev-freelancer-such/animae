@@ -42,9 +42,7 @@ function Header() {
 
   return (
     <header className="flex justify-center fixed top-4 left-0 right-0 z-50 px-4">
-      <div
-        className="grid grid-cols-[auto_minmax(200px,380px)_auto] items-center gap-3 bg-black/55 py-1.5 pl-3 pr-2 backdrop-blur-md rounded-full border border-white/10 shadow-lg w-[min(920px,calc(100%-2rem))]"
-      >
+      <div className="grid grid-cols-[auto_minmax(200px,380px)_auto] items-center gap-3 bg-black/55 py-1.5 pl-3 pr-2 backdrop-blur-md rounded-full border border-white/10 shadow-lg w-[min(920px,calc(100%-2rem))]">
         <Link
           href="/"
           aria-label="Animae trang chủ"

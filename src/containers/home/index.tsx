@@ -20,7 +20,6 @@ import { SeoHead } from "@/components/common/seo-head";
 
 import Banner from "./banner";
 import NewlyUpdate from "./newly-update";
-import VipTiers from "./vip-tiers";
 
 interface HomePageProps {
   stories: StoryInterface[];
